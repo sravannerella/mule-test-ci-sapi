@@ -14,7 +14,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.4.0-20220824</app.runtime>
-		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>
+		<mule.maven.plugin.version>3.8.1</mule.maven.plugin.version>
 		<munit.version>2.3.13</munit.version>
 	</properties>
 
@@ -30,6 +30,23 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>4.4.0</muleVersion>
+						<!-- <username>${anypoint.username}</username>
+						<password>${anypoint.password}</password> -->
+						<applicationName>mule-test-ci-sapi</applicationName>
+						<environment>${anypoint.env}</environment>
+						<!-- <region>${anypoint.region}</region> -->
+						<workers>1</workers>
+						<workerType>MICRO</workerType>
+						<connectedAppClientId>${anypoint.connectedId}</connectedAppClientId>
+						<connectedAppClientSecret>${anypoint.connectedSecret}</connectedAppClientSecret>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<businessGroupId>${anypoint.businessGroupId}</businessGroupId>
+					</cloudHubDeployment>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>

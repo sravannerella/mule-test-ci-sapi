@@ -1,0 +1,38 @@
+name: Mulesoft CI Build/Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Java 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: "11"
+        distribution: "adopt"
+    
+    - name: Build Mule Project
+      run: mvn clean package -DskipTests
+    
+    - name: Run Munit Test Cases
+      run: mvn clean test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Java 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: "11"
+        distribution: "adopt"
+
+    - name: Deploy Mule Application
+      run: mvn clean deploy -e -DmuleDeploy -DskipTests -Danypoint.username=${{secrets.ANYPOINT_USERNAME}} -Danypoint.password=${{secrets.ANYPOINT_PASSWORD}} -Danypoint.env=${{secrets.ANYPOINT_ENV}} -Danypoint.region=${{secrets.ANYPOINT_REGION}} -Danypoint.connectedId=${{secrets.ANYPOINT_CONNECTED_ID}} -Danypoint.connectedSecret=${{secrets.ANYPOINT_CONNECTED_SECRET}} -Danypoint.businessGroupId=${{secrets.ANYPOINT_BUSINESS_GROUP_ID}}
