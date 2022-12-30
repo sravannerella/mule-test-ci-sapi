@@ -38,7 +38,7 @@
 						<password>${anypoint.password}</password> -->
 						<applicationName>mule-test-ci-sapi</applicationName>
 						<environment>${anypoint.env}</environment>
-						<region>${anypoint.region}</region>
+						<!-- <region>${anypoint.region}</region> -->
 						<workers>1</workers>
 						<workerType>MICRO</workerType>
 						<connectedAppClientId>${anypoint.connectedId}</connectedAppClientId>
