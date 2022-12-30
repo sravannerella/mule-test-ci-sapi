@@ -17,6 +17,10 @@ jobs:
         distribution: "adopt"
     
     - name: Build Mule Project
-      run: mvn clean package
+      run: mvn clean package -DskipTests
 
-  # test:
+  test:
+    needs: build
+    steps:
+    - name: Run Munit Test Cases
+      run: mvn clean test
