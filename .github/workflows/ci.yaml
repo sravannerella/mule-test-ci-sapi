@@ -35,4 +35,4 @@ jobs:
         distribution: "adopt"
 
     - name: Deploy Mule Application
-      run: mvn clean deploy -DmuleDeploy -DskipTests -Danypoint.username=${{secrets.ANYPOINT_USERNAME}} -Danypoint.password=${{secrets.ANYPOINT_PASSWORD}} -Danypoint.env=${{secrets.ANYPOINT_ENV}} -Danypoint.region=${{secrets.ANYPOINT_REGION}}
+      run: mvn clean deploy -DmuleDeploy -DskipTests -Danypoint.username=${{secrets.ANYPOINT_USERNAME}} -Danypoint.password=${{secrets.ANYPOINT_PASSWORD}} -Danypoint.env=${{secrets.ANYPOINT_ENV}} -Danypoint.region=${{secrets.ANYPOINT_REGION}} -Danypoint.connectedId=${{secrets.ANYPOINT_CONNECTED_ID}} -Danypoint.connectedSecret=${{secrets.ANYPOINT_CONNECTED_SECRET}}

@@ -41,6 +41,9 @@
 						<region>${anypoint.region}</region>
 						<workers>1</workers>
 						<workerType>MICRO</workerType>
+						<connectedAppClientId>${anypoint.connectedId}</connectedAppClientId>
+						<connectedAppClientSecret>${anypoint.connectedSecret}</connectedAppClientSecret>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
