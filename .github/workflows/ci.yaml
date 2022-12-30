@@ -18,10 +18,6 @@ jobs:
     
     - name: Build Mule Project
       run: mvn clean package -DskipTests
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+    
     - name: Run Munit Test Cases
       run: mvn clean test
