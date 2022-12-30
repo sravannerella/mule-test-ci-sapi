@@ -44,7 +44,7 @@
 						<connectedAppClientId>${anypoint.connectedId}</connectedAppClientId>
 						<connectedAppClientSecret>${anypoint.connectedSecret}</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<businessGroup>${anypoint.businessGroup}</businessGroup>
+						<businessGroupId>${anypoint.businessGroupId}</businessGroupId>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
