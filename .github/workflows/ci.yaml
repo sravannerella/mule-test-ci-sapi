@@ -21,6 +21,7 @@ jobs:
 
   test:
     needs: build
+    runs-on: ubuntu-latest
     steps:
     - name: Run Munit Test Cases
       run: mvn clean test
