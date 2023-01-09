@@ -30,6 +30,20 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+					  <muleVersion>${app.runtime}</muleVersion>
+					  <applicationName>mule-test-ci-sapi</applicationName>
+					  <environment>${anypoint.env}</environment>
+					  <region>us-east-1</region>
+					  <workers>1</workers>
+					  <workerType>MICRO</workerType>
+					  <connectedAppClientId>${anypoint.clientId}</connectedAppClientId>
+					  <connectedAppClientSecret>${anypoint.clientSecret}</connectedAppClientSecret>
+					  <connectedAppGrantType>client_credentials</connectedAppGrantType>
+					  <businessGroupId>${anypoint.businessId}</businessGroupId>
+					</cloudHubDeployment>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>
