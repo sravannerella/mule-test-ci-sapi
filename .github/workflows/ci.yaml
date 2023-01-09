@@ -1,0 +1,41 @@
+name: Mulesoft Continuous Integration Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Java and Maven Environmnet
+      uses: actions/setup-java@v3
+      with:
+        distribution: "adopt"
+        java-version: "11"
+    
+    - name: Install Mule Project Dependencies
+      run: mvn clean install -DskipTests
+    
+    - name: Build Mule Project
+      run: mvn clean package -DskipTests
+    
+    - name: Test Mule Project
+      run: mvn clean test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Java and Maven Environmnet
+      uses: actions/setup-java@v3
+      with:
+        distribution: "adopt"
+        java-version: "11"
+
+    - name: Deploy Mule Application
+      run: mvn clean deploy -DmuleDeploy -DskipTests -Danypoint.env=Sandbox -Danypoint.clientId=${{secrets.ANYPOINT_CONNECTED_ID}} -Danypoint.clientSecret=${{secrets.ANYPOINT_CONNECTED_SECRET}} -Danypoint.businessId=${{secrets.ANYPOINT_BUSINESS_GROUP_ID}}
